@@ -14,14 +14,7 @@ const Door = () => {
         </UpDetail>
       </Up>
 
-      <div>
-        <button type="submit">
-          방 만들래 <span>새로운 모임을 만들어요</span>
-        </button>
-        <button type="submit">
-          참여할래 <span>기존 모임에 참가해요</span>
-        </button>
-      </div>
+      <div></div>
 
       <p>
         네가 관심 있던 <span>그 사람</span>과 매칭 될지도 몰라!
