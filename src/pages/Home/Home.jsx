@@ -8,8 +8,26 @@ const Home = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
 
-  const handlePhoneNumberChange = (e) => setPhoneNumber(e.target.value);
-  const handlePasswordChange = (e) => setPassword(e.target.value);
+  const [isNumberValid, setIsNumberValid] = useState(false);
+  const [isPasswordValid, setIsPasswordValid] = useState(false);
+
+  // 전화번호 유효성 검사
+  const validatePhoneNumber = (phoneNumber) => {
+    const phoneRegex = /^(\+82|0)(10|11|16|17|18|19)-?\d{3,4}-?\d{4}$/;
+    return phoneRegex.test(phoneNumber);
+  };
+
+  const handlePhoneNumberChange = (e) => {
+    const value = e.target.value;
+    setPhoneNumber(value);
+    setIsNumberValid(validatePhoneNumber(value));
+  };
+
+  const handlePasswordChange = (e) => {
+    const value = e.target.value;
+    setPassword(value);
+    setIsPasswordValid(value.length === 6);
+  };
 
   return (
     <Wrapper>
@@ -24,25 +42,29 @@ const Home = () => {
             placeholder="010-0000-0000"
             value={phoneNumber}
             onChange={handlePhoneNumberChange}
+            hasValue={phoneNumber.trim() !== ''}
+            isValid={isNumberValid}
           />
         </PhoneNumber>
 
         <Password>
           <Text>비밀번호</Text>
           <InputPassword
-            type="text"
+            type="password"
             name="password"
             placeholder="비밀번호 6자리를 입력해주세요"
             value={password}
             onChange={handlePasswordChange}
+            hasValue={password.trim() !== ''}
+            isValid={isPasswordValid}
           />
         </Password>
       </Main>
 
       <SubmitButton
         type="submit"
-        onClick={phoneNumber.trim() !== '' && password.trim() !== '' ? () => navigate('/door') : undefined}
-        disabled={phoneNumber.trim() === '' || password.trim() === ''}>
+        onClick={isNumberValid && isPasswordValid ? () => navigate('/door') : undefined}
+        disabled={!isNumberValid || !isPasswordValid}>
         번호 따러 갈래?
       </SubmitButton>
     </Wrapper>
@@ -52,6 +74,8 @@ const Home = () => {
 export default Home;
 
 export const Wrapper = styled.div`
+  width: 100%;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -87,7 +111,7 @@ export const InputNumber = styled.input`
   padding: 1.5rem 1.3rem;
   align-items: center;
   border-radius: 10px;
-  border: 1px solid ${({ theme }) => theme.color.gray6};
+  border: 1px solid ${({ theme, isValid }) => (isValid ? theme.color.primary : theme.color.gray6)};
   ${({ theme }) => theme.font.body2};
 
   &::placeholder {
@@ -107,7 +131,7 @@ export const InputPassword = styled.input`
   padding: 1.5rem 1.3rem;
   align-items: center;
   border-radius: 10px;
-  border: 1px solid ${({ theme }) => theme.color.gray6};
+  border: 1px solid ${({ theme, isValid }) => (isValid ? theme.color.primary : theme.color.gray6)};
   ${({ theme }) => theme.font.body2};
 
   &::placeholder {
@@ -117,11 +141,9 @@ export const InputPassword = styled.input`
 `;
 
 export const SubmitButton = styled.button`
-  /* position: absolute; */
   width: 100%;
   height: 5.6rem;
   margin-top: 6.3rem;
-  /* margin-bottom: 4.4rem; */
   border-radius: 10px;
   background-color: ${({ theme }) => theme.color.primary};
   color: ${({ theme }) => theme.color.white};
@@ -131,4 +153,6 @@ export const SubmitButton = styled.button`
     background-color: ${({ theme }) => theme.color.gray4};
     color: ${({ theme }) => theme.color.gray9};
   }
+  margin-top: auto;
+  margin-bottom: 4.4rem;
 `;
