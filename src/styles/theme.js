@@ -30,6 +30,16 @@ const theme = {
     font-size: 18px;
     line-height: 24px;
   `,
+      font-weight: 700; /* Bold */
+      font-size: 18px;
+      line-height: 24px;
+    `,
+    heading5: `
+    font-family: "Pretendard";
+    font-weight: 600; /* Bold */
+    font-size: 18px;
+    line-height: 24px;
+  `,
     body1: `
         font-family: "Pretendard";
         font-weight: 700; /* Bold */
@@ -103,6 +113,9 @@ const theme = {
     stroke_gray10: '#E6E6E6',
     ic_gray10: '#B3B3B3',
     tp_white50: '#FFFFFF80',
+
+    light2: '#FFF0FA',
+
     error_red: '#FF0000',
   },
 };
