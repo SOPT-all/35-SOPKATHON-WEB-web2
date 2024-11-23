@@ -30,16 +30,6 @@ const theme = {
     font-size: 18px;
     line-height: 24px;
   `,
-      font-weight: 700; /* Bold */
-      font-size: 18px;
-      line-height: 24px;
-    `,
-    heading5: `
-    font-family: "Pretendard";
-    font-weight: 600; /* Bold */
-    font-size: 18px;
-    line-height: 24px;
-  `,
     body1: `
         font-family: "Pretendard";
         font-weight: 700; /* Bold */
@@ -107,6 +97,8 @@ const theme = {
     gray9: '#323232',
     gray10: '#121212',
     primary: '#FF44C5',
+    primary_light1: '#FFCCEF',
+    primary_light2: '#FFF0FA',
     secondary: '#FFCCEF',
     text_gray10: '#737373',
     white: '#FFFFFF',
