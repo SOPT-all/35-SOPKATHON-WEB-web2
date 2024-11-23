@@ -2,12 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 
-const Modal = ({ closeModal }) => {
-  const handleJoin = () => {
-    // 참여 관련 로직 +
-    closeModal();
-  };
-
+const Modal = ({ handleJoin }) => {
   return ReactDOM.createPortal(
     <Overlay>
       <ModalContainer>

@@ -20,8 +20,8 @@ export const router = createBrowserRouter([
           { path: 'new', element: <NewGroup /> }, // /groups/new
           { path: 'hint', element: <Hint /> }, // /groups/hint
           { path: 'search', element: <Search /> }, // /groups/search
-          { path: ':groupId/board', element: <Board /> }, // /groups/:groupId/board
-          { path: ':groupId/info/:cardId', element: <Info /> }, // /groups/:groupId/info
+          { path: ':teamId/board', element: <Board /> }, // /groups/:groupId/board
+          { path: ':teamId/info/:cardId', element: <Info /> }, // /groups/:groupId/info
         ],
       },
     ],
