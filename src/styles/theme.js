@@ -103,6 +103,9 @@ const theme = {
     stroke_gray10: '#E6E6E6',
     ic_gray10: '#B3B3B3',
     tp_white50: '#FFFFFF80',
+
+    light2: '#FFF0FA',
+
     error_red: '#FF0000',
   },
 };
