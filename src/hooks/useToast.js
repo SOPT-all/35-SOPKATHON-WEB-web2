@@ -6,7 +6,6 @@ const useToast = () => {
 
   const showToast = () => {
     if (isToastRunning) return; // 이미 실행 중이면 return
-    console.log('toast');
 
     setIsToastRunning(true);
     setIsToastVisible(true);

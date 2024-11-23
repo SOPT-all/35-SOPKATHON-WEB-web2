@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <div>
       <button onClick={showToast}>Show Toast</button> {/* 버튼 클릭 시 showToast 호출 */}
-      <Toast>토스트 입니다!</Toast>
+      <Toast isVisible={isToastVisible}>토스트 입니다!</Toast>
     </div>
   );
 };
