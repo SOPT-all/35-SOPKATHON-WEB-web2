@@ -4,7 +4,7 @@ import SvgBtnLetterOpenHintNoText from '../../assets/svg/BtnLetterOpenHintNoText
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
-const BoardCard = ({ children, isAbleClick, selectData, cardId }) => {
+const BoardCard = ({ children, isAbleClick, selectData, cardId, teamId }) => {
   const isCardOpne = cardId === selectData[0];
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();

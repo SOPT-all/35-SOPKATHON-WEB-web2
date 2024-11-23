@@ -59,7 +59,7 @@ export const data = {
 };
 
 export const cardInfoData = {
-  hint: '힌트',
-  phoneNumber: '전화번호',
-  mission: '미션',
+  hint: '재연',
+  phoneNumber: '010-0000-0000',
+  mission: '미션입니다',
 };
