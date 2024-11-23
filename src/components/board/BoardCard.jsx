@@ -6,11 +6,11 @@ import { useNavigate } from 'react-router-dom';
 
 const BoardCard = ({ children }) => {
   const [isCardOpen, setIsCardOpen] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleClickCard = () => {
-    setIsCardOpen(true);
+    // setIsCardOpen(true);
     setIsModalOpen(true);
   };
 
