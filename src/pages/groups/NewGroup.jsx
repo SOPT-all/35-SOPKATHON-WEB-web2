@@ -1,27 +1,45 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import Modal from '../../components/NewGroup/Modal';
 
 const NewGroup = () => {
   const [groupName, setGroupName] = useState('');
   const [num, setNum] = useState('');
   const [error, setError] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleButtonClick = () => {
+    setIsModalOpen(true); // 버튼 클릭 시 모달 열기
+  };
+
   const handleChangeName = (e) => {
-    if (e.target.value.length > 5 || e.target.value.trim() === '') {
+    const value = e.target.value;
+    setGroupName(value);
+
+    if (value.length > 5 || value.trim() === '') {
       setError(true);
     } else {
       setError(false);
     }
-    setGroupName(e.target.value);
   };
 
   const handleChangeNum = (e) => {
-    if (e.target.value.trim() === '') {
+    const value = e.target.value;
+    setNum(value);
+
+    if (value.trim() === '') {
       setError(true);
     } else {
       setError(false);
     }
-    setNum(e.target.value);
   };
+
+  const closeModal = () => {
+    // 뭔가 더~~~~
+    setIsModalOpen(false); // 모달 닫기
+  };
+
+  const isButtonDisabled = error || groupName.trim() === '' || num.trim() === '';
 
   return (
     <Wrapper>
@@ -40,7 +58,10 @@ const NewGroup = () => {
           <Input placeholder="최소 인원 수를 입력해주세요" onChange={handleChangeNum} />
         </InputContainer>
       </InputLayout>
-      <Button isInvalid={error}>이대로 개설할래</Button>
+      <Button isInvalid={isButtonDisabled} onClick={handleButtonClick} disabled={isButtonDisabled}>
+        이대로 개설할래
+      </Button>
+      {isModalOpen && <Modal closeModal={closeModal} />}
     </Wrapper>
   );
 };
