@@ -1,10 +1,37 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import BoardCard from '../../components/board/BoardCard';
-import { CARD_DATA } from '../../constants/mocks/boardCardData';
+import { data } from '../../constants/mocks/boardCardData';
 
 const Board = () => {
-  
+
+  const [renderData, setRenderData] = useState([]);
+  const [isAbleClick, setIsAbleClick] = useState(false);
+  const [selectData, setSelectData] = useState([]);
+
+  useEffect(() => {
+    // 최소모임인원이 넘었을 때
+
+    if (data.myCard) {
+      // 1번 열어봤을 때
+      setSelectData(Object.values(data.myCard));
+      // console.log(Object.values(data.myCard));
+      const newRenderData = [{ id: data.myCard.id, hint: data.myCard.hint }, ...data.cards];
+      setRenderData(newRenderData);
+      setIsAbleClick(true);
+    } else {
+      // 1번 열어보지 않았을 때
+      const newRenderData = [...data.cards];
+      setRenderData(newRenderData);
+      if (data.isAbleToChoose) {
+        // 최소모임인원이 충족
+        setIsAbleClick(true);
+      } else {
+        // 최소모임인원 충족x
+        setIsAbleClick(false);
+      }
+    }
+  }, []);
 
   return (
     <>
@@ -15,8 +42,12 @@ const Board = () => {
         </BoardHeader>
 
         <BoardList>
-          {CARD_DATA.map((data) => {
-            return <BoardCard key={data.id}>{data.hint}</BoardCard>;
+          {renderData.map((data) => {
+            return (
+              <BoardCard key={data.id} cardId={data.id} isAbleClick={isAbleClick} selectData={selectData}>
+                {data.hint}
+              </BoardCard>
+            );
           })}
         </BoardList>
       </BoardLayout>

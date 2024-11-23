@@ -4,27 +4,48 @@ import SvgBtnLetterOpenHintNoText from '../../assets/svg/BtnLetterOpenHintNoText
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
-const BoardCard = ({ children }) => {
-  const [isCardOpen, setIsCardOpen] = useState(false);
+const BoardCard = ({ children, isAbleClick, selectData, cardId }) => {
+  const isCardOpne = cardId === selectData[0];
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleClickCard = () => {
-    // setIsCardOpen(true);
-    setIsModalOpen(true);
+    if (selectData.length > 1) {
+      alert('미안 쪽지는 하나만 열 수 있어 ~');
+    } else {
+      // isAbleClick 가 true면
+      if (isAbleClick) {
+        setIsModalOpen(true);
+      } else {
+        // false면 toast 나와야 해!
+        alert('쪽지가 더 모여야 해!');
+      }
+    }
   };
 
   const handleClickModalButton = () => {
     // navigate(`/groups/${groupId}/info/${cardId}`);
-    navigate('/groups/1/info/1');
+    navigate(`/groups/1/info/${cardId}`);
+    // navigate('/groups/1/info/1');
   };
 
   return (
     <BoardLayout>
-      <CardLayout onClick={handleClickCard}>
-        {isCardOpen ? <SvgBtnLetterOpenHintNoText /> : <SvgBtnLetterCloseHintNoText />}
-        <CardText>{children}</CardText>
-      </CardLayout>
+      {isCardOpne ? (
+        <CardLayout onClick={handleClickCard}>
+          <SvgBtnLetterOpenHintNoText />
+          <SelectedCard>
+            <SelectedCardText>{children}</SelectedCardText>
+            <SelectedCardText>{selectData[2]}</SelectedCardText>
+            <SelectedCardText>{selectData[3]}</SelectedCardText>
+          </SelectedCard>
+        </CardLayout>
+      ) : (
+        <CardLayout onClick={handleClickCard}>
+          <SvgBtnLetterCloseHintNoText />
+          <CardText>{children}</CardText>
+        </CardLayout>
+      )}
 
       {isModalOpen && (
         <ModalLayout>
@@ -43,8 +64,8 @@ const BoardCard = ({ children }) => {
 export default BoardCard;
 
 const BoardLayout = styled.div`
-  width: 100%;
   position: relative;
+  display: flex;
 `;
 
 const CardLayout = styled.div`
@@ -55,6 +76,18 @@ const CardLayout = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+const SelectedCard = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+`;
+
+const SelectedCardText = styled.span`
+  color: ${({ theme }) => theme.color.gray10};
+  ${({ theme }) => theme.font.body4}
 `;
 
 const CardText = styled.span`
@@ -78,6 +111,8 @@ const ModalLayout = styled.div`
 
   position: fixed;
   top: calc(50dvh - 12.6rem);
+  left: 2.4rem;
+  right: 2.4rem;
   z-index: 5;
 `;
 

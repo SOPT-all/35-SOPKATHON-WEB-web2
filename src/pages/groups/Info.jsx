@@ -1,8 +1,16 @@
 import React from 'react';
 import SvgBtnLetterInformation from '../../assets/svg/BtnLetterInformation';
 import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
+import { cardInfoData } from '../../constants/mocks/boardCardData';
 
 const Info = () => {
+  const { groupId, cardId } = useParams();
+  console.log(`groupId: ${groupId}`);
+  console.log(`cardId: ${cardId}`);
+
+  const { hint, phoneNumber, mission } = cardInfoData;
+
   return (
     <InfoLayout>
       <InfoBackground>
@@ -18,17 +26,17 @@ const Info = () => {
         <InfoContentDiv>
           <div>
             <InfoLabel>힌트</InfoLabel>
-            <InfoText>건대미남</InfoText>
+            <InfoText>{hint}</InfoText>
           </div>
 
           <div>
             <InfoLabel>전화번호</InfoLabel>
-            <InfoText>010-0000-0000</InfoText>
+            <InfoText>{phoneNumber}</InfoText>
           </div>
 
           <div>
             <InfoLabel>미션</InfoLabel>
-            <InfoText>모각공하기</InfoText>
+            <InfoText>{mission}</InfoText>
           </div>
         </InfoContentDiv>
 
