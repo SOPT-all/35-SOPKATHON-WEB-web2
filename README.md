@@ -24,35 +24,35 @@
 <p>모임에 입장한 유저는 자신에 대한 힌트를 보내고, 방에 쌓인 카드 중 원하는 힌트를 보고 선택할 수 있습니다. <br/>선택한 카드를 통해 다른 유저의 전화번호와 미션을 획득할 수 있습니다.</p><br/></div>
 
 <br/>
-<br/>
+<br/>ㅇ
 
 <h2> 👥 Team </h2>
 
 <table align="center">
     <tr align="center">
       <td style="min-width: 150px;">
-            <a href="https://avatars.githubusercontent.com/bongtta">
+            <a href="https://github.com/bongtta">
               <img src="https://github.com/user-attachments/assets/0ae2e2ba-1246-4099-825c-57ca5afb97dc" width="200" alt="깃허브계정-프로필사진">
               <br />
               <b>bongtta</b>
             </a>
         </td>
       <td style="min-width: 150px;">
-            <a href="https://avatars.githubusercontent.com/chaeneey">
+            <a href="https://github.com/chaeneey">
               <img src="https://github.com/user-attachments/assets/87687b8a-298a-4b59-86d0-37a23ba89e49" width="200" alt="깃허브계정-프로필사진">
               <br />
               <b>chaeneey</b>
             </a>
         </td>
       <td style="min-width: 150px;">
-            <a href="https://avatars.githubusercontent.com/heesunee">
+            <a href="https://github.com/heesunee">
               <img src="https://github.com/user-attachments/assets/d52b95c2-eff1-493f-83e0-5c888b1c89ef" width="200" alt="깃허브계정-프로필사진">
               <br />
               <b>heesunee</b>
             </a>
         </td>
       <td style="min-width: 150px;">
-            <a href="https://avatars.githubusercontent.com/constantly-dev">
+            <a href="https://github.com/constantly-dev">
               <img src="https://github.com/user-attachments/assets/1304e0b8-e1d6-4d25-a20f-3690e763cd75" width="200" alt="깃허브계정-프로필사진">
               <br />
               <b>constantly-dev</b>
