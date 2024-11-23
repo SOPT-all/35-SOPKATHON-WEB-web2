@@ -36,7 +36,7 @@ const Hint = () => {
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 100%;
+  height: 100dvh;
   padding: 0 2.4rem;
   display: flex;
   flex-direction: column;
@@ -105,7 +105,9 @@ const Button = styled.button`
   ${({ theme }) => theme.font.body1};
   color: #ffffff;
   border-radius: 1rem;
-  margin-top: 6.3rem;
+  margin-top: auto;
+  margin-bottom: 4.4rem;
+
   cursor: ${({ $isActive }) => ($isActive ? 'pointer' : 'not-allowed')};
 `;
 
