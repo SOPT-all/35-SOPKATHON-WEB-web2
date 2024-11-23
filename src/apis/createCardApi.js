@@ -1,12 +1,13 @@
 import { Axios } from './axiosInstance';
 
-export const createCardApi = async (teamId, hint) => {
+export const createCardApi = async (groupId, hint) => {
+  const userId = localStorage.getItem('id');
   await Axios.post(
     '/api/v1/cards',
-    { groupId: 1, hint },
+    { groupId, hint },
     {
       headers: {
-        'User-Id': 4,
+        'User-Id': userId,
       },
     },
   );
