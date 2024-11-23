@@ -1,20 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import SvgBtnLetterInformation from '../../assets/svg/BtnLetterInformation';
 import styled from 'styled-components';
 import { useNavigate, useParams } from 'react-router-dom';
 import { cardInfoData } from '../../constants/mocks/boardCardData';
+import getCardData from '../../apis/getCardData';
 
 const Info = () => {
-  const { groupId, cardId } = useParams();
-  console.log(`groupId: ${groupId}`);
+  const [data, setData] = useState();
+  const { teamId, cardId } = useParams();
+  console.log(`teamId: ${teamId}`);
   console.log(`cardId: ${cardId}`);
 
   const { hint, phoneNumber, mission } = cardInfoData;
   const navigate = useNavigate();
 
   const handleClickButton = () => {
-    navigate(`/groups/${groupId}/board`);
+    navigate(`/groups/${teamId}/board`);
   };
+
+  useEffect(() => {
+    const fetchCardData = async () => {
+      try {
+        const data = await getCardData(cardId, teamId);
+        setData(data);
+      } catch (error) {
+        console.log('에러:', error);
+      }
+    };
+
+    console.log(data);
+    fetchCardData();
+  }, [teamId]);
 
   return (
     <InfoLayout>

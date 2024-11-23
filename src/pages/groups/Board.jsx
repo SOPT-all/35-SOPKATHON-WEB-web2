@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import BoardCard from '../../components/board/BoardCard';
-// import { data } from '../../constants/mocks/boardCardData';
 import getCardList from '../../apis/getCardList';
 import { useParams } from 'react-router-dom';
 
 const Board = () => {
-  // const userId = 1;
   const { teamId } = useParams();
   const [data, setData] = useState();
   const [renderData, setRenderData] = useState([]);
@@ -37,10 +35,10 @@ const Board = () => {
       setIsAbleClick(true);
     } else {
       // 1번 열어보지 않았을 때
-      const newRenderData = [...data.cards];
+      const newRenderData = [...data.data.hiddenList];
       setRenderData(newRenderData);
 
-      if (data.isAbleToChoose) {
+      if (data.data.isAbleToChoose) {
         setIsAbleClick(true); // 최소모임인원이 충족
       } else {
         setIsAbleClick(false); // 최소모임인원 충족x
