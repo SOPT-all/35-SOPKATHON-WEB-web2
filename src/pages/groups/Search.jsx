@@ -8,6 +8,7 @@ import Modal from '../../components/Search/Modal';
 const Search = () => {
   const [clickedGroupId, setClickedGroupId] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [groups, setGroups] = useState([]);
 
   const handleGroupClick = (groupId) => {
     setClickedGroupId((prevId) => (prevId === groupId ? undefined : groupId));
@@ -30,16 +31,16 @@ const Search = () => {
         <Title>네가 찾고 있는 모임의 이름을 알려줘</Title>
       </TitleWrapper>
       <TextFiledWrapper>
-        <TextFiled />
+        <TextFiled onSearch={(data) => setGroups(data)} />
       </TextFiledWrapper>
       <GroupWrapper>
-        <GroupList onGroupClick={handleGroupClick} clickedId={clickedGroupId} />
+        <GroupList groups={groups} onGroupClick={handleGroupClick} clickedId={clickedGroupId} />
       </GroupWrapper>
       <ButtonWrapper>
         <Button content={'바로 이거야'} selected={clickedGroupId !== undefined} onClick={handleButtonClick} />
       </ButtonWrapper>
 
-      {isModalOpen && <Modal groupId={clickedGroupId} closeModal={closeModal} />}
+      {isModalOpen && <Modal closeModal={closeModal} groupId={clickedGroupId} />}
     </SearchContainer>
   );
 };

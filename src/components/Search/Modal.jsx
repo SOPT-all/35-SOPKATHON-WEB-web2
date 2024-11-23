@@ -4,18 +4,29 @@ import styled from 'styled-components';
 import Button from './Button';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { registerGroups } from '../../apis/searchApi';
 const Modal = ({ groupId, closeModal }) => {
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState('');
+  console.log(`Group ID: ${groupId}`);
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
 
-  const handleSubmit = () => {
-    // 모달에서 처리할 작업
+  const handleSubmit = async () => {
+    if (!inputValue.trim()) return; // 빈 값일 경우 API 호출 안 함
+
+    try {
+      const data = await registerGroups(groupId, inputValue);
+      console.log(data);
+    } catch (error) {
+      console.error('검색 중 오류 발생:', error);
+    }
     console.log(`Group ID: ${groupId}`);
-    closeModal(); // 모달 닫기
+
+    // 모달 닫기
+    closeModal();
   };
 
   const handleButtonClick = () => {

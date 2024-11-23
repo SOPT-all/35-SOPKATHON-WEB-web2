@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import groups from './groups';
-const GroupList = ({ onGroupClick, clickedId }) => {
+
+const GroupList = ({ onGroupClick, clickedId, groups }) => {
+  console.log(groups);
+
   return (
     <>
       {groups.map((group) => (

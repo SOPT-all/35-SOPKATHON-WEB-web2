@@ -3,16 +3,24 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { SearchGray } from '../../assets/svg';
 import { SearchPink } from '../../assets/svg';
-const TextFiled = () => {
+import { searchGroups } from '../../apis/searchApi';
+const TextFiled = ({ onSearch }) => {
   const [inputValue, setInputValue] = useState('');
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
 
-  const handleSearchClick = () => {
-    // TODO: Search API 호출
-    console.log(inputValue);
+  const handleSearchClick = async () => {
+    if (!inputValue.trim()) return; // 빈 값일 경우 API 호출 안 함
+
+    try {
+      const data = await searchGroups(inputValue); // searchTeams 호출
+      console.log(data); // 받은 데이터 처리
+      onSearch(data.data.teams);
+    } catch (error) {
+      console.error('검색 중 오류 발생:', error);
+    }
   };
 
   return (
