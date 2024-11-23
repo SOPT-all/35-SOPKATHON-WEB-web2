@@ -1,6 +1,8 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import SvgLogo from '../../assets/svg/Logo';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -29,9 +31,19 @@ const Home = () => {
     setIsPasswordValid(value.length === 6);
   };
 
+  const login = async () => {
+    const response = await axios.post('https://www.jaeyun.o-r.kr/api/v1/signin', { phoneNumber, password });
+    console.log(response.data.code);
+
+    if (response.data.code === 200) {
+      localStorage.setItem('id', response.data.id);
+      navigate('/door');
+    }
+  };
+
   return (
     <Wrapper>
-      <Logo src="public/logo.png" />
+      <Logo />
 
       <Main>
         <PhoneNumber>
@@ -61,10 +73,7 @@ const Home = () => {
         </Password>
       </Main>
 
-      <SubmitButton
-        type="submit"
-        onClick={isNumberValid && isPasswordValid ? () => navigate('/door') : undefined}
-        disabled={!isNumberValid || !isPasswordValid}>
+      <SubmitButton type="submit" onClick={login} disabled={!isNumberValid || !isPasswordValid}>
         번호 따러 갈래?
       </SubmitButton>
     </Wrapper>
@@ -82,8 +91,9 @@ export const Wrapper = styled.div`
   padding: 0 2.4rem;
 `;
 
-export const Logo = styled.img`
-  height: 15.9rem;
+export const Logo = styled(SvgLogo)`
+  width: 19rem;
+  height: 17.4rem;
   margin-top: 9.5rem;
 `;
 
