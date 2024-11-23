@@ -21,7 +21,7 @@ export const router = createBrowserRouter([
           { path: 'hint', element: <Hint /> }, // /groups/hint
           { path: 'search', element: <Search /> }, // /groups/search
           { path: ':groupId/board', element: <Board /> }, // /groups/:groupId/board
-          { path: ':groupId/info', element: <Info /> }, // /groups/:groupId/info
+          { path: ':groupId/info/:cardId', element: <Info /> }, // /groups/:groupId/info
         ],
       },
     ],

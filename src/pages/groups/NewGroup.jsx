@@ -1,17 +1,45 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import Modal from '../../components/NewGroup/Modal';
 
 const NewGroup = () => {
   const [groupName, setGroupName] = useState('');
   const [num, setNum] = useState('');
+  const [error, setError] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleButtonClick = () => {
+    setIsModalOpen(true); // 버튼 클릭 시 모달 열기
+  };
 
   const handleChangeName = (e) => {
-    setGroupName(e.target.value);
+    const value = e.target.value;
+    setGroupName(value);
+
+    if (value.length > 5 || value.trim() === '') {
+      setError(true);
+    } else {
+      setError(false);
+    }
   };
 
   const handleChangeNum = (e) => {
-    setNum(e.target.value);
+    const value = e.target.value;
+    setNum(value);
+
+    if (value.trim() === '') {
+      setError(true);
+    } else {
+      setError(false);
+    }
   };
+
+  const closeModal = () => {
+    // 뭔가 더~~~~
+    setIsModalOpen(false); // 모달 닫기
+  };
+
+  const isButtonDisabled = error || groupName.trim() === '' || num.trim() === '';
 
   return (
     <Wrapper>
@@ -20,8 +48,9 @@ const NewGroup = () => {
       <InputLayout>
         <InputContainer>
           <Label>모임명</Label>
-          <Input placeholder="모임명을 입력해주세요" onChange={handleChangeName} maxLength={5} />
-          <HelperText>*공백포함 5글자 이내</HelperText>
+          <Input placeholder="모임명을 입력해주세요" onChange={handleChangeName} isInvalid={error} />
+          {error && <ErrorText>모임명은 5글자 이내여야 합니다.</ErrorText>}
+          {!error && <HelperText>*공백포함 5글자 이내</HelperText>}
         </InputContainer>
 
         <InputContainer>
@@ -29,14 +58,17 @@ const NewGroup = () => {
           <Input placeholder="최소 인원 수를 입력해주세요" onChange={handleChangeNum} />
         </InputContainer>
       </InputLayout>
-      <Button>이대로 개설할래</Button>
+      <Button isInvalid={isButtonDisabled} onClick={handleButtonClick} disabled={isButtonDisabled}>
+        이대로 개설할래
+      </Button>
+      {isModalOpen && <Modal closeModal={closeModal} />}
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 100%;
+  height: 100dvh;
   padding: 0 2.4rem;
   display: flex;
   flex-direction: column;
@@ -72,17 +104,24 @@ const Label = styled.p`
 
 const Input = styled.input`
   height: 5rem;
-  border: 1px solid ${({ theme }) => theme.color.gray6};
+  border: 1px solid ${({ isInvalid, theme }) => (isInvalid ? theme.color.error_red : theme.color.gray6)};
   border-radius: 1rem;
   padding: 1.5rem 1.3rem;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
-const ErrorText = styled.p``;
+const ErrorText = styled.p`
+  ${({ theme }) => theme.font.caption3};
+  color: ${({ theme }) => theme.color.error_red};
+  align-self: flex-start;
+`;
 
 const HelperText = styled.p`
   ${({ theme }) => theme.font.caption3};
   color: ${({ theme }) => theme.color.gray8};
-
   align-self: flex-end;
 `;
 
@@ -90,10 +129,14 @@ const Button = styled.button`
   width: 100%;
   height: 5.6rem;
   white-space: nowrap;
-  background-color: ${({ theme }) => theme.color.primary};
+  background-color: ${({ isInvalid, theme }) => (isInvalid ? theme.color.gray4 : theme.color.primary)};
+  cursor: ${({ isInvalid }) => (isInvalid ? 'not-allowed' : 'pointer')};
   ${({ theme }) => theme.font.body1};
   color: #ffffff;
+
   border-radius: 1rem;
-  margin-top: 6.3rem;
+  margin-top: auto;
+  margin-bottom: 4.4rem;
 `;
+
 export default NewGroup;
