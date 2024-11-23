@@ -1,7 +1,7 @@
 import React from 'react';
 import SvgBtnLetterInformation from '../../assets/svg/BtnLetterInformation';
 import styled from 'styled-components';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { cardInfoData } from '../../constants/mocks/boardCardData';
 
 const Info = () => {
@@ -10,6 +10,11 @@ const Info = () => {
   console.log(`cardId: ${cardId}`);
 
   const { hint, phoneNumber, mission } = cardInfoData;
+  const navigate = useNavigate();
+
+  const handleClickButton = () => {
+    navigate(`/groups/${groupId}/board`);
+  };
 
   return (
     <InfoLayout>
@@ -40,7 +45,7 @@ const Info = () => {
           </div>
         </InfoContentDiv>
 
-        <InfoButton>연락하러가기</InfoButton>
+        <InfoButton onClick={handleClickButton}>연락하러가기</InfoButton>
       </InfoContent>
     </InfoLayout>
   );

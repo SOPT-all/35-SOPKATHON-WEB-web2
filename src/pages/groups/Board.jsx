@@ -1,21 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import BoardCard from '../../components/board/BoardCard';
-import { data } from '../../constants/mocks/boardCardData';
+// import { data } from '../../constants/mocks/boardCardData';
+import getCardList from '../../apis/getCardList';
+import { useParams } from 'react-router-dom';
 
 const Board = () => {
-
+  // const userId = 1;
+  const { teamId } = useParams();
+  const [data, setData] = useState();
   const [renderData, setRenderData] = useState([]);
   const [isAbleClick, setIsAbleClick] = useState(false);
   const [selectData, setSelectData] = useState([]);
 
   useEffect(() => {
-    // 최소모임인원이 넘었을 때
+    const fetchCardList = async () => {
+      try {
+        const groupListData = await getCardList(teamId);
+        setData(groupListData);
+      } catch (error) {
+        console.log('에러:', error);
+      }
+    };
+
+    fetchCardList();
+  }, [teamId]);
+
+  useEffect(() => {
+    if (!data) return; // data가 없으면 실행하지 않음
 
     if (data.myCard) {
-      // 1번 열어봤을 때
-      setSelectData(Object.values(data.myCard));
-      // console.log(Object.values(data.myCard));
+      // 최소모임인원이 넘었을 때
+      setSelectData(Object.values(data.myCard)); // 1번 열어봤을 때
       const newRenderData = [{ id: data.myCard.id, hint: data.myCard.hint }, ...data.cards];
       setRenderData(newRenderData);
       setIsAbleClick(true);
@@ -23,15 +39,14 @@ const Board = () => {
       // 1번 열어보지 않았을 때
       const newRenderData = [...data.cards];
       setRenderData(newRenderData);
+
       if (data.isAbleToChoose) {
-        // 최소모임인원이 충족
-        setIsAbleClick(true);
+        setIsAbleClick(true); // 최소모임인원이 충족
       } else {
-        // 최소모임인원 충족x
-        setIsAbleClick(false);
+        setIsAbleClick(false); // 최소모임인원 충족x
       }
     }
-  }, []);
+  }, [data]);
 
   return (
     <>
@@ -44,7 +59,12 @@ const Board = () => {
         <BoardList>
           {renderData.map((data) => {
             return (
-              <BoardCard key={data.id} cardId={data.id} isAbleClick={isAbleClick} selectData={selectData}>
+              <BoardCard
+                key={data.id}
+                cardId={data.id}
+                isAbleClick={isAbleClick}
+                selectData={selectData}
+                teamId={teamId}>
                 {data.hint}
               </BoardCard>
             );

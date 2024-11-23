@@ -3,8 +3,9 @@ import SvgBtnLetterCloseHintNoText from '../../assets/svg/BtnLetterCloseHintNoTe
 import SvgBtnLetterOpenHintNoText from '../../assets/svg/BtnLetterOpenHintNoText';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import getCardData from '../../apis/getCardData';
 
-const BoardCard = ({ children, isAbleClick, selectData, cardId }) => {
+const BoardCard = ({ children, isAbleClick, selectData, cardId, teamId }) => {
   const isCardOpne = cardId === selectData[0];
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
@@ -27,6 +28,7 @@ const BoardCard = ({ children, isAbleClick, selectData, cardId }) => {
     // navigate(`/groups/${groupId}/info/${cardId}`);
     navigate(`/groups/1/info/${cardId}`);
     // navigate('/groups/1/info/1');
+    getCardData(cardId, teamId);
   };
 
   return (
