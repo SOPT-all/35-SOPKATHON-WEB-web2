@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Home = () => {
+  const navigate = useNavigate();
+
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handlePhoneNumberChange = (e) => setPhoneNumber(e.target.value);
+  const handlePasswordChange = (e) => setPassword(e.target.value);
+
   return (
     <Wrapper>
       <Logo src="public/logo.png" />
@@ -9,16 +18,33 @@ const Home = () => {
       <Main>
         <PhoneNumber>
           <Text>전화번호</Text>
-          <InputNumber type="text" name="phoneNumber" placeholder="010-0000-0000" />
+          <InputNumber
+            type="text"
+            name="phoneNumber"
+            placeholder="010-0000-0000"
+            value={phoneNumber}
+            onChange={handlePhoneNumberChange}
+          />
         </PhoneNumber>
 
         <Password>
           <Text>비밀번호</Text>
-          <InputPassword type="text" name="password" placeholder="비밀번호 6자리를 입력해주세요" />
+          <InputPassword
+            type="text"
+            name="password"
+            placeholder="비밀번호 6자리를 입력해주세요"
+            value={password}
+            onChange={handlePasswordChange}
+          />
         </Password>
       </Main>
 
-      <SubmitButton type="submit">번호 따러 갈래?</SubmitButton>
+      <SubmitButton
+        type="submit"
+        onClick={phoneNumber.trim() !== '' && password.trim() !== '' ? () => navigate('/door') : undefined}
+        disabled={phoneNumber.trim() === '' || password.trim() === ''}>
+        번호 따러 갈래?
+      </SubmitButton>
     </Wrapper>
   );
 };
@@ -100,4 +126,9 @@ export const SubmitButton = styled.button`
   background-color: ${({ theme }) => theme.color.primary};
   color: ${({ theme }) => theme.color.white};
   ${({ theme }) => theme.font.body1};
+
+  &:disabled {
+    background-color: ${({ theme }) => theme.color.gray4};
+    color: ${({ theme }) => theme.color.gray9};
+  }
 `;
