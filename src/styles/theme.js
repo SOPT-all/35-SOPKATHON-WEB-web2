@@ -1,83 +1,89 @@
 const theme = {
   font: {
     heading1: `
-    font-family: "Pretendard";
-    font-weight: 700; /* Bold */
-    font-size: 24px;
-    line-height: 29px;
-  `,
+      font-family: "Pretendard";
+      font-weight: 700; /* Bold */
+      font-size: 24px;
+      line-height: 29px;
+    `,
     heading2: `
-        font-family: "Pretendard";
-        font-weight: 700; /* Bold */
-        font-size: 20px;
-        line-height: 24px;
-      `,
+          font-family: "Pretendard";
+          font-weight: 700; /* Bold */
+          font-size: 20px;
+          line-height: 36px;
+        `,
     heading3: `
+          font-family: "Pretendard";
+          font-weight: 700; /* Bold */
+          font-size: 20px;
+          line-height: 24px;
+        `,
+    heading4: `
         font-family: "Pretendard";
         font-weight: 700; /* Bold */
         font-size: 18px;
         line-height: 24px;
       `,
-    heading4: `
+    heading5: `
       font-family: "Pretendard";
-      font-weight: 600; /* SemiBold */
+      font-weight: 600; /* Bold */
       font-size: 18px;
       line-height: 24px;
     `,
     body1: `
-        font-family: "Pretendard";
-        font-weight: 700; /* Bold */
-        font-size: 16px;
-        line-height: 20px;
-      `,
+          font-family: "Pretendard";
+          font-weight: 700; /* Bold */
+          font-size: 16px;
+          line-height: 20px;
+        `,
     body2: `
-        font-family: "Pretendard";
-        font-weight: 500; /* Medium */
-        font-size: 16px;
-        line-height: 20px;
-      `,
+          font-family: "Pretendard";
+          font-weight: 500; /* Medium */
+          font-size: 16px;
+          line-height: 20px;
+        `,
     body3: `
-        font-family: "Pretendard";
-        font-weight: 700; /* Bold */
-        font-size: 14px;
-        line-height: 20px;
-      `,
+          font-family: "Pretendard";
+          font-weight: 700; /* Bold */
+          font-size: 14px;
+          line-height: 20px;
+        `,
     body4: `
-        font-family: "Pretendard";
-        font-weight: 600; /* SemiBold */
-        font-size: 14px;
-        line-height: 20px;
-      `,
+          font-family: "Pretendard";
+          font-weight: 600; /* SemiBold */
+          font-size: 14px;
+          line-height: 20px;
+        `,
     body5: `
-        font-family: "Pretendard";
-        font-weight: 500; /* Medium */
-        font-size: 14px;
-        line-height: 20px;
-      `,
+          font-family: "Pretendard";
+          font-weight: 500; /* Medium */
+          font-size: 14px;
+          line-height: 20px;
+        `,
     body6: `
-        font-family: "Pretendard";
-        font-weight: 400; /* Regular */
-        font-size: 14px;
-        line-height: 20px;
-      `,
+          font-family: "Pretendard";
+          font-weight: 400; /* Regular */
+          font-size: 14px;
+          line-height: 20px;
+        `,
     caption1: `
-        font-family: "Pretendard";
-        font-weight: 600; /* SemiBold */
-        font-size: 12px;
-        line-height: 14px;
-      `,
+          font-family: "Pretendard";
+          font-weight: 600; /* SemiBold */
+          font-size: 12px;
+          line-height: 14px;
+        `,
     caption2: `
-        font-family: "Pretendard";
-        font-weight: 400; /* Regular */
-        font-size: 12px;
-        line-height: 14px;
-      `,
+          font-family: "Pretendard";
+          font-weight: 400; /* Regular */
+          font-size: 12px;
+          line-height: 14px;
+        `,
     caption3: `
-        font-family: "Pretendard";
-        font-weight: 400; /* Regular */
-        font-size: 10px;
-        line-height: 14px;
-      `,
+          font-family: "Pretendard";
+          font-weight: 400; /* Regular */
+          font-size: 10px;
+          line-height: 14px;
+        `,
   },
   color: {
     gray1: '#FFFFFF',
