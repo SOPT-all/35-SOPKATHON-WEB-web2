@@ -33,10 +33,10 @@ const Home = () => {
 
   const login = async () => {
     const response = await axios.post('https://www.jaeyun.o-r.kr/api/v1/signin', { phoneNumber, password });
-    console.log(response.data.code);
 
     if (response.data.code === 200) {
-      localStorage.setItem('id', response.data.id);
+      console.log(response.data.id);
+      localStorage.setItem('id', response.data.data.id);
       navigate('/door');
     }
   };
