@@ -1,9 +1,24 @@
 import React, { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { createCardApi } from '../../apis/createCardApi';
 
 const Hint = () => {
   const [hint, setHint] = useState('');
   const [isActive, setIsActive] = useState(false);
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const createTeam = async () => {
+    console.log('dddd', location.state.groupData.id);
+    try {
+      await createCardApi(location.state.groupData.id, hint);
+      navigate(`/groups/${location.state.groupData.id}/board`);
+    } catch (error) {
+      alert('에러 발생! 재시도 해주세요!');
+    }
+  };
 
   const handleHint = (e) => {
     const value = e.target.value;
@@ -19,7 +34,7 @@ const Hint = () => {
 
   return (
     <Wrapper>
-      <Title>SOPT</Title>
+      <Title>{location.state.groupData.name}</Title>
       <SubTitle>p.s 이 모임은 30일 뒤에 저절로 없어질 거야</SubTitle>
       <HintContainer>
         <HintTitle>내 운명 상대를 위한 힌트 한 가지</HintTitle>
@@ -29,7 +44,9 @@ const Hint = () => {
           <HelperText>*공백포함 5글자 이내</HelperText>
         </InputContainer>
       </HintContainer>
-      <Button $isActive={isActive}>내 쪽지 만들기</Button>
+      <Button onClick={createTeam} $isActive={isActive}>
+        내 쪽지 만들기
+      </Button>
     </Wrapper>
   );
 };

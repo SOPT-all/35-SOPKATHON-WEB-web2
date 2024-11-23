@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { checkDuplicatedApi } from '../../apis/checkDupicatedApi';
+import { createTeamApi } from '../../apis/createTeamApi';
 import Modal from '../../components/NewGroup/Modal';
 
 const NewGroup = () => {
@@ -7,9 +10,24 @@ const NewGroup = () => {
   const [num, setNum] = useState('');
   const [error, setError] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [groupData, setGroupData] = useState({});
+  const navigate = useNavigate();
 
-  const handleButtonClick = () => {
-    setIsModalOpen(true); // 버튼 클릭 시 모달 열기
+  const handleButtonClick = async () => {
+    try {
+      const isDuplicated = await checkDuplicatedApi(groupName);
+      if (isDuplicated) {
+        alert('중복된 이름입니다.');
+        return;
+      }
+      const data = await createTeamApi(groupName, num);
+      setGroupData(data);
+      console.log('dd', data);
+
+      setIsModalOpen(true); // 버튼 클릭 시 모달 열기
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleChangeName = (e) => {
@@ -34,9 +52,14 @@ const NewGroup = () => {
     }
   };
 
-  const closeModal = () => {
+  const handleJoin = () => {
     // 뭔가 더~~~~
     setIsModalOpen(false); // 모달 닫기
+    navigate('/groups/hint', {
+      state: {
+        groupData,
+      },
+    });
   };
 
   const isButtonDisabled = error || groupName.trim() === '' || num.trim() === '';
@@ -61,7 +84,7 @@ const NewGroup = () => {
       <Button isInvalid={isButtonDisabled} onClick={handleButtonClick} disabled={isButtonDisabled}>
         이대로 개설할래
       </Button>
-      {isModalOpen && <Modal closeModal={closeModal} />}
+      {isModalOpen && <Modal handleJoin={handleJoin} />}
     </Wrapper>
   );
 };
