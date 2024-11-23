@@ -11,6 +11,7 @@
     "svgr": "npx @svgr/cli -d src/assets/svg --ignore-existing --no-dimensions --ext jsx public/assets"
   },
   "dependencies": {
+    "@emotion/styled": "^11.13.5",
     "axios": "^1.7.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

@@ -1,7 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-const Button = ({ content, selected }) => {
-  return <Buttons selected={selected}>{content}</Buttons>;
+const Button = ({ content, selected, onClick }) => {
+  return (
+    <Buttons selected={selected} onClick={onClick}>
+      {content}
+    </Buttons>
+  );
 };
 
 export default Button;
