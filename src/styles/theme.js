@@ -10,20 +10,26 @@ const theme = {
         font-family: "Pretendard";
         font-weight: 700; /* Bold */
         font-size: 20px;
-        line-height: 24px;
+        line-height: 36px;
       `,
     heading3: `
         font-family: "Pretendard";
         font-weight: 700; /* Bold */
-        font-size: 18px;
+        font-size: 20px;
         line-height: 24px;
       `,
     heading4: `
       font-family: "Pretendard";
-      font-weight: 600; /* SemiBold */
+      font-weight: 700; /* Bold */
       font-size: 18px;
       line-height: 24px;
     `,
+    heading5: `
+    font-family: "Pretendard";
+    font-weight: 600; /* Bold */
+    font-size: 18px;
+    line-height: 24px;
+  `,
     body1: `
         font-family: "Pretendard";
         font-weight: 700; /* Bold */
