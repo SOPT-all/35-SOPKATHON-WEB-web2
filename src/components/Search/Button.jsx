@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-const Button = ({ content, isClicked }) => {
-  return <Buttons>{content}</Buttons>;
+const Button = ({ content, selected }) => {
+  return <Buttons selected={selected}>{content}</Buttons>;
 };
 
 export default Button;
@@ -14,6 +14,7 @@ const Buttons = styled.button`
   justify-content: center;
   align-items: center;
   border-radius: 1rem;
-  background-color: ${(props) => props.theme.color.gray4};
+  background-color: ${({ selected, theme }) => (selected ? theme.color.primary : theme.color.gray4)};
+  color: ${({ selected, theme }) => (selected ? theme.color.white : theme.color.gray9)};
   ${(props) => props.theme.font.body1};
 `;
