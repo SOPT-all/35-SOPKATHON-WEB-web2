@@ -95,7 +95,7 @@ const theme = {
     primary_light2: '#FFF0FA',
     secondary: 'FFCCEF',
     text_gray10: '737373',
-    white: 'FFFFFF',
+    white: '#FFFFFF',
     stroke_gray10: 'E6E6E6',
     ic_gray10: 'B3B3B3',
     tp_white50: 'FFFFFF',

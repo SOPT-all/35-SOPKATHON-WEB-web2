@@ -1,4 +1,3 @@
-import * as React from 'react';
 const SvgBtnLetterCloseHintNoText = (props) => (
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 160 100" {...props}>
     <g clipPath="url(#btn_letter_close_hint_no_text_svg__a)">
