@@ -16,10 +16,10 @@ const Modal = ({ groupId, closeModal }) => {
 
   const handleSubmit = async () => {
     if (!inputValue.trim()) return; // 빈 값일 경우 API 호출 안 함
-    const code = toString(inputValue);
 
     try {
       const data = await registerGroups(groupId, code);
+      console.log(data);
     } catch (error) {
       console.error('검색 중 오류 발생:', error);
     }
@@ -36,6 +36,10 @@ const Modal = ({ groupId, closeModal }) => {
     }
   };
 
+  const code = inputValue.toString();
+  console.log(code);
+
+  console.log(inputValue);
   return ReactDOM.createPortal(
     <Overlay>
       <ModalContainer>
