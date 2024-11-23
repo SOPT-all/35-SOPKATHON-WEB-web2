@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Home = () => {
-  return <HomeLayout>우리팀 화이팅~</HomeLayout>;
+  return <HomeLayout>우리팀 화이팅</HomeLayout>;
 };
 
 export default Home;
